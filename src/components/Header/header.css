@@ -1,0 +1,29 @@
+header {
+    background-color: rgba(3, 37, 65, 1);
+    height: 64px;
+}
+
+header .content {
+    padding-left: 40px;
+    padding-right: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+}
+
+header img {
+    width: 154px;
+}
+
+header ul {
+    display: flex;
+    list-style-type: none;
+}
+
+header ul li {
+    margin-left: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+}

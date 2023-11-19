@@ -1,0 +1,41 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: sans-serif;
+}
+
+h3 {
+    font-size: 22px;
+}
+
+.Movie-list {
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    grid-gap: 8px;
+}
+
+@media screen and (max-width: 975px) {
+    .Movie-list {
+        grid-template-columns: repeat(4,1fr);
+    }
+}
+
+@media screen and (max-width: 775px) {
+    .Movie-list {
+        grid-template-columns: repeat(3,1fr);
+    }
+}
+
+@media screen and (max-width: 580px) {
+    .Movie-list {
+        grid-template-columns: repeat(2,1fr);
+    }
+}
+
+/* Global */
+.container {
+    max-width: 1230px;
+    margin: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+}

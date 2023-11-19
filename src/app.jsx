@@ -1,35 +1,54 @@
+import MainHeader from "./components/Header/header";
+import "./app.css"
+import MovieCard from "./components/MovieCard/movieCard";
+import Container from "./components/Container/container";
+import Space from "./components/Space/space";
 import { useEffect, useState } from "react";
+import Banner from "./components/Banner/banner";
+import SearchBox from "./components/Search/search";
 
 const App = () => {
-    // const [arr, setArr ] = useState ([]);
-    // const [loading, setLoading] = useState(false)
-    
-    // const loadData = async () => {
-    //     console.log("loading..");
-    //     setLoading(true);
-    //     try {
-    //         let resp = await fetch("")
-    //         let jsonData = await resp.json();
-    //         console.log(jsonData)
-    //         setArr(jsonData)
-    //         setLoading(false)
-    //     } catch (error) {
-    //         console.log(error)
-    //     }
-    // };
+    const [movies,setMovies] = useState([]);
 
-    // useEffect(() => {
-    //     loadData();
-    // }, []);
+    const url = 'https://api.themoviedb.org/3/trending/movie/day?language=en-US';
+    const options = {
+        method: 'GET',
+        headers: {
+            accept: 'application/json',
+            Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiMTNjZGVhYzE5YjlhNWMxNzU5MTNkMjkzODM2Zjk5ZSIsInN1YiI6IjY1NTI3ODAyZDRmZTA0MDBlMWIxYmE1NSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.H1XVedQdHZv6FlvjxaJa4JxCApp9Vos0Ox3fn2zxinY'
+        },
+    };
+
+    const getData = async () => {
+        try {
+            let resp = await fetch(url, options)
+            let jsonData = await resp.json()
+            setMovies(jsonData.results)
+        } catch (error) {
+            console.log(error)
+        }
+    };
+
+    useEffect(() => {
+        getData();
+    }, []);
+
     return (
         <div>
-            {/* <h1>Hi Everyone</h1>
-            <ul>
-                {loading && <p>Loading...</p>}
-                {arr.map((el) => <li>{el.results}</li>)}
-            </ul> */}
-
-            <h1>Hello</h1>
+            <MainHeader />
+            <Container>
+                <Banner />
+                <Space height={24} />
+                <SearchBox />
+                <Space height={24} />
+                <h3>Trending</h3>
+                <Space height={24} />
+                <div className="Movie-list">
+                    {movies.map((el) => (
+                        <MovieCard item={el} />
+                    ))}
+                </div>
+            </Container>
         </div>
     )
 }
